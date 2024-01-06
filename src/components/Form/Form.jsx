@@ -1,0 +1,65 @@
+import React from 'react'
+import './Form.css'
+import { IoMdFolderOpen } from "react-icons/io";
+import { FiSettings, FiStar } from "react-icons/fi";
+import { Button, IconButton } from '@mui/material';
+import ColorLensIcon from '@mui/icons-material/ColorLens';
+import { AiOutlineEye } from "react-icons/ai";
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Avatar from '@mui/material/Avatar';
+import Centeredtabs from '../Tabs/Tabs';
+import QuestionForm from '../QuestionForm/QuestionForm';
+import { motion } from 'framer-motion';
+import { GrUndo } from "react-icons/gr";
+import { GrRedo } from 'react-icons/gr';
+import { useNavigate } from 'react-router-dom';
+
+const Form = () => {
+    const navigate = useNavigate();
+  return (
+    <>
+    <div
+    className="form_header">
+        <div className="form_header_left">
+            <img src=".././images/body.jpg" alt="" className="form_header_image" />
+            <input type="text" placeholder="Untitled Form" className="form_name" />
+        </div>
+        <div className="form_header_right">
+            <IconButton>
+                <AiOutlineEye className="form_header_icon"/>
+            </IconButton>
+            <IconButton>
+                <FiSettings className="form_header_icon"/>
+            </IconButton>
+            <IconButton onClick={()=>navigate(-1)}>
+                <GrUndo className="form_header_icon"/>
+            </IconButton>
+            <IconButton onClick={()=>navigate(+1)}>
+                <GrRedo className="form_header_icon"/>
+            </IconButton>
+            <Button variant="contained" className="form_header_button">Send</Button>
+            <IconButton>
+                <MoreVertIcon className="form_header_icon"/>
+            </IconButton >
+            <IconButton>
+                <Avatar className="form_header_icon" style={{height:'30px',width:'30px'}} src='.././images/knee.jpeg'/>
+            </IconButton>
+        </div>
+    </div >
+    <div>
+    <Centeredtabs/>
+    <motion.div  
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.6 }}
+        className="form_bottom">
+        
+        <QuestionForm/>
+    </motion.div >
+    </div>
+    </>
+  )
+}
+
+export default Form
